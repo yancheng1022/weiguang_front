@@ -15,8 +15,6 @@
                     <div  class="itemContentName_container">{{itemDetail.name}}</div> 
                     <span class="itemIcon_container"><i class="el-icon-caret-right"></i></span>
                 </div>
-                
-                
             </div>
             
         </div>
@@ -75,7 +73,12 @@ export default {
     /* flex-wrap: nowrap; */
 }
 .topName_container{
-    border: 1px solid yellow;
+    border-radius:5px;
+    font-size: 25px;
+    font-weight:900;
+    /* background-color: #8dc63f; */
+    background-color: rgb(233, 233, 233);
+    font-family: "楷体","楷体_GB2312";
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,11 +101,13 @@ export default {
 
 }
 .itemDetail_Container{
-    border: 1px solid green;
+    background-color: rgb(245, 245, 245);
     display:flex;
     /* justify-content: flex-start; */
     flex-wrap:wrap;
-        margin-top: 50px;
+    margin-top: 50px;
+    padding-left: 20px;
+
     /* background-color: red;
     display: inline-block;
     width: auto;
@@ -114,17 +119,19 @@ export default {
 
 }
 .itemContent_container{
-    border: 1px solid slateblue;
     display:flex;
     height: 50px;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
-
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 .itemContentName_container{
-    border: 1px solid slateblue;
     display:flex;
+    font-family: "楷体","楷体_GB2312";
+    font-weight:550;
+    background-color: rgb(233, 233, 233);
+    border-radius:5px;
     height: 50px;
     padding-inline: 70px;
     justify-content: center;
