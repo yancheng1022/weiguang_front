@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="form" :model="form" label-width="80px">
+  <el-form ref="interviewRef" :model="form" label-width="80px">
     <el-form-item label="题目内容">
       <el-input type="textarea" :rows="2" placeholder="题目内容" v-model="form.question"></el-input>
     </el-form-item>
@@ -26,14 +26,24 @@
 export default {
   data() {
     return {
-      title: "",
+
       options: [],
       form: {
-        question:"",
+        question: "",
         answer: "",
-        title:"",
-        categoryIds:""
+        categoryIds: ""
       },
+      rules: {
+        question: [
+          { required: true, message: "请输入问题", trigger: "blur" },
+        ],
+        answer: [
+          { required: true, message: "请输入答案", trigger: "change" }
+        ],
+        categoryIds:[
+            { required: true, message: "请选择分类", trigger: "change" }
+        ]
+      }
     };
   },
   created() {
@@ -41,24 +51,24 @@ export default {
   },
   methods: {
     imgAdd(pos, $file) {
-        let formdata = new FormData();
-        console.log($file)
-  
-        formdata.append("file", $file);
+      let formdata = new FormData();
+      console.log($file);
 
-         this.$http({
-          url: "/uploadFile",
-          method: "post",
-          data: formdata,
-          headers: {
-            "Content-Type": "multipart/form-data;charset=UTF-8"
-          }
-        }).then(url => {
-            console.log(url)
-          // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
-          //    this.$vm.$img2Url(pos, url.data);
-          this.$refs.md.$img2Url(pos, url.data);
-        });
+      formdata.append("file", $file);
+
+      this.$http({
+        url: "/uploadFile",
+        method: "post",
+        data: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data;charset=UTF-8"
+        }
+      }).then(url => {
+        console.log(url);
+        // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
+        //    this.$vm.$img2Url(pos, url.data);
+        this.$refs.md.$img2Url(pos, url.data);
+      });
     },
     imgDel(pos) {
       delete this.imgFile[pos];
@@ -70,7 +80,19 @@ export default {
       });
     },
     onSubmit() {
-      console.log("submit!");
+      this.$refs.interviewRef.validate(async valid => {
+        if (valid) {
+          const { data: res } = await this.$http.post(
+            "admin/addInterview",
+            this.form
+          );
+          if (res.Result !== 1) return this.$message.error("提交失败");
+          this.$message.success("提交成功");
+          this.$router.push("/admin/home");
+        } else {
+          return;
+        }
+      });
     }
   }
 };
