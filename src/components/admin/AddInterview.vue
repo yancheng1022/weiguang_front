@@ -4,7 +4,7 @@
       <el-input type="textarea" :rows="2" placeholder="题目内容" v-model="form.question"></el-input>
     </el-form-item>
     <el-form-item label="题目分类">
-      <el-select v-model="form.categoryIds" multiple placeholder="题目分类">
+      <el-select v-model="form.categoryId" placeholder="题目分类">
         <el-option
           v-for="item in options"
           :key="item.categoryId"
@@ -31,7 +31,7 @@ export default {
       form: {
         question: "",
         answer: "",
-        categoryIds: ""
+        categoryId: ""
       },
       rules: {
         question: [
@@ -40,7 +40,7 @@ export default {
         answer: [
           { required: true, message: "请输入答案", trigger: "change" }
         ],
-        categoryIds:[
+        categoryId:[
             { required: true, message: "请选择分类", trigger: "change" }
         ]
       }
@@ -83,7 +83,7 @@ export default {
       this.$refs.interviewRef.validate(async valid => {
         if (valid) {
           const { data: res } = await this.$http.post(
-            "admin/addInterview",
+            "interview/addInterview",
             this.form
           );
           if (res.Result !== 1) return this.$message.error("提交失败");
