@@ -64,8 +64,8 @@ export default {
                 const { data: res } = await this.$http.post("admin/login",this.loginForm);
                 if (res.Result !== 1) return this.$message.error("登录失败");
                 this.$message.success("登录成功");
-                window.sessionStorage.setItem("token", res.Data);
-                this.$router.push("/home");
+                window.sessionStorage.setItem("admin_token", res.Data);
+                this.$router.push("/admin/home");
             }else{
                 return;    
             }

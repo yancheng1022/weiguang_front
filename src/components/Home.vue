@@ -67,16 +67,13 @@ export default {
   background-color: rgb(211, 220, 230);
 }
 .mainCategoryList_container{
-    /* border: 1px solid red; */
     display:flex;
     justify-content: flex-start;
-    /* flex-wrap: nowrap; */
 }
 .topName_container{
     border-radius:5px;
     font-size: 25px;
     font-weight:900;
-    /* background-color: #8dc63f; */
     background-color: rgb(233, 233, 233);
     font-family: "楷体","楷体_GB2312";
     display: flex;
@@ -87,36 +84,14 @@ export default {
     flex-shrink:0;
     margin-top: 50px;
     margin-right: 100px;
-    /* background-color: #DCDFE6;
-    display: inline-block;
-    width: auto;
-    height:auto;
-    border: 1px solid #ccc; 
-    padding:30px; */
-    /* text-align: center;
-    line-height: auto; */
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
 
 }
 .itemDetail_Container{
     background-color: rgb(245, 245, 245);
     display:flex;
-    /* justify-content: flex-start; */
     flex-wrap:wrap;
     margin-top: 50px;
     padding-left: 20px;
-
-    /* background-color: red;
-    display: inline-block;
-    width: auto;
-    height:auto;
-    border: 1px solid #ccc; 
-    padding:8px; */
-    
-    /* flex-direction: row; */
-
 }
 .itemContent_container{
     display:flex;
